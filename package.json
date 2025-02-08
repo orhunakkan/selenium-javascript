@@ -1,7 +1,7 @@
 {
   "name": "selenium-javascript",
   "version": "1.0.0",
-  "description": "Selenium WebDriver Test Framework with JavaScript",
+  "description": "Selenium WebDriver Framework with JavaScript",
   "scripts": {},
   "dependencies": {
     "selenium-webdriver": "^4.28.1",
