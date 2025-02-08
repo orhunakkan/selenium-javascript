@@ -2,26 +2,11 @@
   "name": "selenium-javascript",
   "version": "1.0.0",
   "description": "Selenium WebDriver Test Framework with JavaScript",
-  "scripts": {
-    "test:ui": "mocha 'test/ui/**/*.js' --timeout 30000 --require @babel/register --reporter allure-mocha",
-    "test:api": "mocha 'test/api/**/*.js' --require @babel/register --reporter allure-mocha",
-    "test": "npm run test:ui && npm run test:api",
-    "report": "allure generate allure-results --clean && allure open"
-  },
+  "scripts": {},
   "dependencies": {
-    "selenium-webdriver": "^4.10.0",
-    "axios": "^1.4.0",
-    "chai": "^4.3.7",
-    "dotenv": "^16.3.1",
-    "mocha": "^10.2.0",
-    "winston": "^3.9.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.22.5",
-    "@babel/preset-env": "^7.22.5",
-    "@babel/register": "^7.22.5",
-    "allure-commandline": "^2.22.1",
-    "allure-js-commons": "^2.4.0",
-    "allure-mocha": "^2.4.0"
+    "selenium-webdriver": "^4.28.1",
+    "axios": "^1.7.9",
+    "chai": "^5.1.2",
+    "mocha": "^11.1.0"
   }
 }
