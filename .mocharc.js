@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     timeout: 30000,
     require: ['esm'],
     extension: ['js'],
