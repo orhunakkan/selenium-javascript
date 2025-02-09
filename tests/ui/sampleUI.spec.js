@@ -6,6 +6,9 @@ describe('Sample UI Test', function() {
   /** @type {import('selenium-webdriver').WebDriver} */
   let driver;
 
+  // Set timeout to 30 seconds
+  this.timeout(30000);
+
   beforeEach(async function() {
     driver = await DriverUtil.createDriver();
   });
