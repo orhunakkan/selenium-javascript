@@ -29,10 +29,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run UI tests
+      - name: Run All tests
         continue-on-error: true
-        run: npm run test:ui
-
-      - name: Run API tests
-        continue-on-error: true
-        run: npm run test:api
+        run: npm run test

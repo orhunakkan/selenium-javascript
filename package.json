@@ -1,7 +1,6 @@
 {
   "name": "selenium-javascript",
   "version": "1.0.0",
-  "description": "Selenium WebDriver Framework with JavaScript",
-  "scripts": {},
-  "dependencies": {}
+  "description": "Selenium JavaScript Framework",
+  "scripts": {}
 }
