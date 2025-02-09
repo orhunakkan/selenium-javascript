@@ -1,8 +1,8 @@
 const config = {
   selenium: {
     browser: 'chrome',
-    implicitTimeout: 15000,
-    pageLoadTimeout: 20000,
+    implicitTimeout: process.env.CI ? 30000 : 15000,
+    pageLoadTimeout: process.env.CI ? 30000 : 20000,
   },
   baseUrls: {
     ui: 'https://www.example.com',
