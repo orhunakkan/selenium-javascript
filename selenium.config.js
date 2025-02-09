@@ -1,15 +1,14 @@
-module.exports = {
-  // Selenium WebDriver configurations
+const config = {
   selenium: {
     browser: 'chrome',
     implicitTimeout: 15000,
     pageLoadTimeout: 20000,
   },
-  
-  // Test framework configurations
   baseUrls: {
-    ui: 'www.example.com',
-    api: 'www.reqres.in',
+    ui: 'https://www.example.com',
+    api: 'https://reqres.in',
   },
   testFiles: './tests/**/*.spec.js',
 };
+
+export default config;

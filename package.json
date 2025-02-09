@@ -2,7 +2,12 @@
   "name": "selenium-javascript",
   "version": "1.0.0",
   "description": "Selenium WebDriver Framework with JavaScript",
-  "scripts": {},
+  "type": "module",
+  "scripts": {
+    "test:ui": "mocha tests/ui/**/*.spec.js",
+    "test:api": "mocha tests/api/**/*.spec.js",
+    "test": "mocha tests/**/*.spec.js"
+  },
   "dependencies": {
     "selenium-webdriver": "^4.28.1",
     "axios": "^1.7.9",
