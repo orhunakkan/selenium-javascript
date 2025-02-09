@@ -1,6 +1,9 @@
 {
-  "name": "selenium-javascript",
+  "name": "javascript-examples",
   "version": "1.0.0",
-  "description": "Selenium JavaScript Framework",
-  "scripts": {}
+  "scripts": {},
+  "author": "Orhun Akkan",
+  "dependencies": {
+    "selenium-webdriver": "4.28.1"
+  }
 }
