@@ -1,3 +1,5 @@
+import { Assertions } from '../../utilities/sampleUtility.js';
+
 (async () => {
     try {
         const url = 'https://reqres.in/api/users';
@@ -6,7 +8,6 @@
             job: 'Software Developer'
         };
 
-        // Send the POST request using fetch
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -15,13 +16,17 @@
             body: JSON.stringify(payload)
         });
 
-        // Check if the response was successful
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+        // Assert response status code is 201 (Created)
+        Assertions.assertStatusCode(response, 201);
 
-        // Parse the JSON response
         const responseData = await response.json();
+        
+        // Assert response contains correct data
+        Assertions.assertEquals(responseData.name, payload.name, 'Name in response does not match');
+        Assertions.assertEquals(responseData.job, payload.job, 'Job in response does not match');
+        Assertions.assertTrue(responseData.id, 'ID should be present in response');
+        Assertions.assertTrue(responseData.createdAt, 'Creation timestamp should be present');
+
         console.log('Response:', responseData);
     } catch (error) {
         console.error('Error during POST request:', error);

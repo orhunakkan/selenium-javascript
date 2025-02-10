@@ -1,26 +1,29 @@
 import { Builder, By, until } from 'selenium-webdriver';
+import { Assertions } from '../../utilities/sampleUtility.js';
 
 (async function exampleTest() {
-    // Initialize the browser (Chrome in this example)
     let driver = await new Builder().forBrowser('chrome').build();
     try {
-        // Navigate to example.com
         await driver.get('https://example.com');
 
-        // Wait until the title is "Example Domain"
+        // Assert page title
         await driver.wait(until.titleIs('Example Domain'), 5000);
+        const title = await driver.getTitle();
+        Assertions.assertEquals(title, 'Example Domain', 'Page title does not match');
 
-        // Get the page title and log it
-        let title = await driver.getTitle();
-        console.log('Page Title:', title);
+        // Assert h1 element exists and has correct text
+        const h1Locator = By.css('h1');
+        await Assertions.assertElementExists(driver, h1Locator);
+        await Assertions.assertElementText(driver, h1Locator, 'Example Domain');
 
-        // Optionally, find and log the main heading text (usually within an <h1> tag)
-        let heading = await driver.findElement(By.css('h1')).getText();
-        console.log('Heading:', heading);
+        // Assert page contains expected text
+        const bodyText = await driver.findElement(By.css('body')).getText();
+        Assertions.assertContains(bodyText, 'for use in illustrative examples');
+
+        console.log('All assertions passed successfully!');
     } catch (err) {
-        console.error('An error occurred:', err);
+        console.error('Test failed:', err);
     } finally {
-        // Quit the browser
         await driver.quit();
     }
 })();

@@ -1,4 +1,5 @@
 import { Builder, By, until } from 'selenium-webdriver';
+import { Assertions } from '../../utilities/sampleUtility.js';
 
 const browsers = ['chrome', 'firefox', 'MicrosoftEdge'];
 
@@ -8,19 +9,19 @@ async function runTestFor(browserName) {
         console.log(`\n--- Running test in ${browserName} ---`);
         driver = await new Builder().forBrowser(browserName).build();
 
-        // Navigate to example.com
         await driver.get('https://example.com');
 
-        // Wait until the title is "Example Domain"
+        // Assert page title
         await driver.wait(until.titleIs('Example Domain'), 5000);
+        const title = await driver.getTitle();
+        Assertions.assertEquals(title, 'Example Domain', `${browserName}: Page title does not match`);
 
-        // Get and log the page title
-        let title = await driver.getTitle();
-        console.log(`${browserName} Title: ${title}`);
+        // Assert h1 element exists and has correct text
+        const h1Locator = By.css('h1');
+        await Assertions.assertElementExists(driver, h1Locator);
+        await Assertions.assertElementText(driver, h1Locator, 'Example Domain');
 
-        // Get and log the main heading (e.g., the <h1> text)
-        let heading = await driver.findElement(By.css('h1')).getText();
-        console.log(`${browserName} Heading: ${heading}`);
+        console.log(`${browserName}: All assertions passed!`);
     } catch (err) {
         console.error(`Error running test in ${browserName}:`, err);
     } finally {
@@ -31,7 +32,6 @@ async function runTestFor(browserName) {
 }
 
 (async function runTests() {
-    // Run tests sequentially for each browser in the list
     for (const browser of browsers) {
         await runTestFor(browser);
     }
