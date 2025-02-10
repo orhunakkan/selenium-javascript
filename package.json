@@ -2,9 +2,7 @@
   "name": "javascript-examples",
   "version": "1.0.0",
   "scripts": {
-    "test": "for file in $(find tests -name \"*.spec.js\"); do node \"$file\"; done",
-    "test:ui": "node tests/ui/**/*.spec.js",
-    "test:api": "node tests/api/**/*.spec.js"
+    "test": "node --test tests/**/*.spec.js"
   },
   "author": "Orhun Akkan",
   "type": "module",
