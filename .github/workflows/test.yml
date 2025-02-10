@@ -26,15 +26,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@latest
-
-      - name: Install Firefox
-        uses: browser-actions/setup-firefox@latest
-
-      - name: Install Edge
-        uses: browser-actions/setup-edge@latest
-
       - name: Install dependencies
         run: npm install
 
