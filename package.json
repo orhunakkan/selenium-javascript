@@ -5,7 +5,9 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "format": "prettier --write \"**/*.{js,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,json,md}\""
   },
   "author": "Orhun Akkan",
   "type": "module",
@@ -13,6 +15,7 @@
     "selenium-webdriver": "4.28.1"
   },
   "devDependencies": {
+    "prettier": "^3.5.0",
     "vitest": "^3.0.5"
   }
 }
