@@ -1,4 +1,4 @@
-name: Selenium Workflow
+name: Selenium Tests
 
 on:
   push:
@@ -26,9 +26,17 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@latest
+
+      - name: Install Firefox
+        uses: browser-actions/setup-firefox@latest
+
+      - name: Install Edge
+        uses: browser-actions/setup-edge@latest
+
       - name: Install dependencies
         run: npm install
 
-      - name: Run All tests
-        continue-on-error: true
-        run: npm run test
+      - name: Run all tests
+        run: for file in $(find tests -name "*.spec.js"); do node "$file"; done

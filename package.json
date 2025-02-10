@@ -1,8 +1,13 @@
 {
   "name": "javascript-examples",
   "version": "1.0.0",
-  "scripts": {},
+  "scripts": {
+    "test": "for file in $(find tests -name \"*.spec.js\"); do node \"$file\"; done",
+    "test:ui": "node tests/ui/**/*.spec.js",
+    "test:api": "node tests/api/**/*.spec.js"
+  },
   "author": "Orhun Akkan",
+  "type": "module",
   "dependencies": {
     "selenium-webdriver": "4.28.1"
   }
