@@ -1,3 +1,5 @@
+import { Builder } from 'selenium-webdriver';
+
 export class APIClient {
   constructor(baseURL = 'https://reqres.in/api') {
     this.baseURL = baseURL;
@@ -13,5 +15,11 @@ export class APIClient {
       status: response.status,
       data: await response.json()
     };
+  }
+}
+
+export class BrowserClient {
+  static async build() {
+    return new Builder().forBrowser('chrome').build();
   }
 }
