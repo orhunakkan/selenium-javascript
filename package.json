@@ -8,7 +8,7 @@
     "coverage": "vitest run --coverage",
     "format": "prettier --write \"**/*.{js,json,md}\"",
     "format:check": "prettier --check \"**/*.{js,json,md}\"",
-    "test:cucumber": "cucumber-js --config cucumber.js"
+    "test:cucumber": "cucumber-js --config cucumber.config.js"
   },
   "author": "Orhun Akkan",
   "type": "module",
