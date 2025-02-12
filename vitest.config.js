@@ -8,6 +8,13 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html']
+    },
+    retry: 2,
+    testTimeout: 30000,
+    hookTimeout: 30000,
+    reporters: ['default', 'html'],
+    outputFile: {
+      html: './reports/test-report.html'
     }
   }
 });

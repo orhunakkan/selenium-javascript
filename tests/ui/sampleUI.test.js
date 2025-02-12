@@ -1,10 +1,9 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { Builder, By, until } from 'selenium-webdriver';
+import { TestHelper } from '../../utilities/testHelper.js';
 
 describe('Example Page UI Tests', () => {
   let driver;
-
-  const url = 'https://example.com';
 
   beforeAll(async () => {
     driver = await new Builder().forBrowser('chrome').build();
@@ -15,8 +14,11 @@ describe('Example Page UI Tests', () => {
   });
 
   it('should contain expected body text', async () => {
-    await driver.get(url);
-    const body = await driver.findElement(By.css('body')).getText();
-    expect(body).toContain('Example Domain');
+    await TestHelper.retryTest(async () => {
+      await driver.get('https://example.com');
+      await driver.wait(until.elementLocated(By.css('body')), 5000);
+      const body = await driver.findElement(By.css('body')).getText();
+      expect(body).toContain('Example Domain');
+    }, 'example_page_body_text', { driver });
   });
 });
