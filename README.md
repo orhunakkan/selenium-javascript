@@ -19,6 +19,7 @@ A comprehensive testing framework featuring API and UI testing capabilities usin
 
 1. Clone the repository
 2. Install dependencies:
+
 ```bash
 npm install
 ```
@@ -26,6 +27,7 @@ npm install
 ## 🧪 Running Tests
 
 ### Unit Tests
+
 ```bash
 npm test              # Run tests in watch mode
 npm run test:run     # Run tests once
@@ -34,6 +36,7 @@ npm run coverage     # Generate coverage report
 ```
 
 ### BDD Tests
+
 ```bash
 npm run test:cucumber
 ```
@@ -65,11 +68,13 @@ npm run test:cucumber
 ## 🤝 Contributing
 
 1. Format code before committing:
+
 ```bash
 npm run format
 ```
 
 2. Verify formatting:
+
 ```bash
 npm run format:check
 ```
