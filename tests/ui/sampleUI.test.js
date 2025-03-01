@@ -27,7 +27,9 @@ describe('Registration Form Tests', () => {
     await driver.findElement(By.name('birthday')).sendKeys('01/01/1990');
 
     // Select a gender radio button
-    await driver.findElement(By.css('input[name="gender"][value="male"]')).click();
+    await driver
+      .findElement(By.css('input[name="gender"][value="male"]'))
+      .click();
 
     // Select an option from the Department dropdown
     const departmentDropdown = await driver.findElement(By.name('department'));
@@ -56,6 +58,8 @@ describe('Registration Form Tests', () => {
     );
 
     const successMessageText = await successMessage.getText();
-    expect(successMessageText).toContain("You've successfully completed registration!");
+    expect(successMessageText).toContain(
+      "You've successfully completed registration!"
+    );
   });
 });
