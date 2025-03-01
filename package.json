@@ -13,6 +13,7 @@
   "author": "Orhun Akkan",
   "type": "module",
   "dependencies": {
+    "axios": "^1.8.1",
     "selenium-webdriver": "4.28.1"
   },
   "devDependencies": {
