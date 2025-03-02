@@ -109,35 +109,41 @@ When(
   }
 );
 
-When('I send PUT request to {string} with user data', async function (endpoint) {
-  try {
-    if (endpoint.startsWith('/users/')) {
-      const id = endpoint.split('/')[2];
-      response = await userService.updateUserWithPut(id, userData);
-    } else {
-      const client = userService.apiClient;
-      response = await client.put(endpoint, userData);
+When(
+  'I send PUT request to {string} with user data',
+  async function (endpoint) {
+    try {
+      if (endpoint.startsWith('/users/')) {
+        const id = endpoint.split('/')[2];
+        response = await userService.updateUserWithPut(id, userData);
+      } else {
+        const client = userService.apiClient;
+        response = await client.put(endpoint, userData);
+      }
+    } catch (error) {
+      console.error(`Error in PUT request to ${endpoint}:`, error);
+      throw error;
     }
-  } catch (error) {
-    console.error(`Error in PUT request to ${endpoint}:`, error);
-    throw error;
   }
-});
+);
 
-When('I send PATCH request to {string} with user data', async function (endpoint) {
-  try {
-    if (endpoint.startsWith('/users/')) {
-      const id = endpoint.split('/')[2];
-      response = await userService.updateUserWithPatch(id, userData);
-    } else {
-      const client = userService.apiClient;
-      response = await client.patch(endpoint, userData);
+When(
+  'I send PATCH request to {string} with user data',
+  async function (endpoint) {
+    try {
+      if (endpoint.startsWith('/users/')) {
+        const id = endpoint.split('/')[2];
+        response = await userService.updateUserWithPatch(id, userData);
+      } else {
+        const client = userService.apiClient;
+        response = await client.patch(endpoint, userData);
+      }
+    } catch (error) {
+      console.error(`Error in PATCH request to ${endpoint}:`, error);
+      throw error;
     }
-  } catch (error) {
-    console.error(`Error in PATCH request to ${endpoint}:`, error);
-    throw error;
   }
-});
+);
 
 When('I send DELETE request to {string}', async function (endpoint) {
   try {
