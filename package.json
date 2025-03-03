@@ -17,7 +17,6 @@
     "selenium-webdriver": "4.28.1"
   },
   "devDependencies": {
-    "@cucumber/cucumber": "^11.2.0",
     "@vitest/ui": "^3.0.5",
     "prettier": "^3.5.0",
     "vitest": "^3.0.5"
