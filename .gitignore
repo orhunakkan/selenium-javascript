@@ -3,6 +3,9 @@ node_modules/
 npm-debug.log
 reports
 
+# Webstorm
+.idea/
+
 # Logs
 logs
 *.log
