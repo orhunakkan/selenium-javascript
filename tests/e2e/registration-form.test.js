@@ -1,17 +1,28 @@
-import { Builder, By, until } from 'selenium-webdriver';
+import { By, until } from 'selenium-webdriver';
 import { expect, describe, it, beforeAll, afterAll } from 'vitest';
+import { createDriver } from '../../utilities/webdriver';
 
 describe('Registration Form Tests', () => {
   let driver;
 
   beforeAll(async () => {
-    driver = await new Builder().forBrowser('chrome').build();
-    await driver.manage().window().maximize();
-    await driver.manage().setTimeouts({ implicit: 10000 });
+    try {
+      driver = await createDriver();
+      await driver.manage().window().maximize();
+      await driver.manage().setTimeouts({ implicit: 10000 });
+    } catch (error) {
+      console.error('Error creating WebDriver:', error);
+    }
   });
 
   afterAll(async () => {
-    await driver.quit();
+    if (driver) {
+      try {
+        await driver.quit();
+      } catch (error) {
+        console.error('Error quitting WebDriver:', error);
+      }
+    }
   });
 
   it('should successfully submit the registration form with valid data', async () => {
