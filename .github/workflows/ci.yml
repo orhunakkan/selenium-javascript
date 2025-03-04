@@ -8,6 +8,7 @@ on:
 
 jobs:
   test:
+    name: Run Selenium and Axios Tests
     runs-on: ubuntu-latest
     
     steps:
