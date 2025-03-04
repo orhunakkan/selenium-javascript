@@ -1,4 +1,3 @@
-// pages/RegistrationPage.js
 import { By, until } from 'selenium-webdriver';
 
 export class RegistrationPage {
