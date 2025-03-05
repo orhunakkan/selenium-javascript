@@ -2,7 +2,7 @@ import axios from 'axios';
 import { expect, describe, it } from 'vitest';
 import { faker } from '@faker-js/faker';
 import { apiFixtures } from '../../fixtures/user-api-data';
-import { populateWithFakerData } from '../../fixtures/faker-utils';
+import { UserFactory } from '../../fixtures/user-factory';
 
 // Base URL for all requests
 const baseURL = 'https://reqres.in/api';
@@ -46,7 +46,7 @@ describe('Reqres API Tests', () => {
   // Test for Create User
   it('should create a new user', async () => {
     // Generate user data using fixture template and faker
-    const userData = populateWithFakerData(apiFixtures.createUser.template);
+    const userData = UserFactory.createUser();
 
     const response = await axios.post(`${baseURL}/users`, userData);
 
@@ -132,7 +132,7 @@ describe('Reqres API Tests', () => {
   // Test for Register (successful)
   it('should register a user successfully', async () => {
     // Use successful registration fixture with faker password
-    const userData = populateWithFakerData(apiFixtures.registerUser.successful);
+    const userData = UserFactory.registerSuccessful();
 
     const response = await axios.post(`${baseURL}/register`, userData);
 
@@ -144,7 +144,7 @@ describe('Reqres API Tests', () => {
   // Test for Register (unsuccessful)
   it('should fail to register with missing password', async () => {
     // Use unsuccessful registration fixture with faker email
-    const userData = populateWithFakerData(apiFixtures.registerUser.unsuccessful);
+    const userData = UserFactory.registerUnsuccessful();
 
     try {
       await axios.post(`${baseURL}/register`, userData);
@@ -170,7 +170,7 @@ describe('Reqres API Tests', () => {
   // Test for Login (unsuccessful)
   it('should fail to login with missing password', async () => {
     // Use unsuccessful login fixture with faker email
-    const userData = populateWithFakerData(apiFixtures.loginUser.unsuccessful);
+    const userData = UserFactory.loginUnsuccessful();
 
     try {
       await axios.post(`${baseURL}/login`, userData);
