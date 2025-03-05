@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { expect, describe, it } from 'vitest';
 import { faker } from '@faker-js/faker';
-import { apiFixtures } from '../../fixtures/user-api-data';
 import { UserFactory } from '../../fixtures/user-factory';
 
 // Base URL for all requests
@@ -159,7 +158,7 @@ describe('Reqres API Tests', () => {
   // Test for Login (successful)
   it('should login successfully', async () => {
     // Use fixture with required credentials that work with the API
-    const userData = apiFixtures.loginUser.successful;
+    const userData = UserFactory.loginSuccessful();
 
     const response = await axios.post(`${baseURL}/login`, userData);
 
