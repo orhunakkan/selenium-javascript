@@ -1,6 +1,7 @@
 import { expect, describe, it, beforeAll, afterAll } from 'vitest';
 import { createDriver } from '../../utilities/webdriver';
 import { RegistrationPage } from '../../pages/registration-page';
+import userData from '../../fixtures/user-data.json';
 
 describe('Registration Form Tests', () => {
   let driver;
@@ -33,18 +34,21 @@ describe('Registration Form Tests', () => {
     // Navigate to the registration form page
     await registrationPage.navigateTo();
 
+    // Get valid user data from fixture
+    const validUser = userData.validUser;
+
     // Fill in the form with valid data
-    await registrationPage.enterFirstName('John');
-    await registrationPage.enterLastName('Doe');
-    await registrationPage.enterUsername('johndoe123');
-    await registrationPage.enterEmail('john.doe@example.com');
-    await registrationPage.enterPassword('Password123');
-    await registrationPage.enterPhone('571-123-4567');
-    await registrationPage.selectGender('male');
-    await registrationPage.enterBirthday('01/15/1990');
-    await registrationPage.selectDepartment('DE');
-    await registrationPage.selectJobTitle('SDET');
-    await registrationPage.selectProgrammingLanguages(['javascript', 'java']);
+    await registrationPage.enterFirstName(validUser.firstName);
+    await registrationPage.enterLastName(validUser.lastName);
+    await registrationPage.enterUsername(validUser.username);
+    await registrationPage.enterEmail(validUser.email);
+    await registrationPage.enterPassword(validUser.password);
+    await registrationPage.enterPhone(validUser.phone);
+    await registrationPage.selectGender(validUser.gender);
+    await registrationPage.enterBirthday(validUser.birthday);
+    await registrationPage.selectDepartment(validUser.department);
+    await registrationPage.selectJobTitle(validUser.jobTitle);
+    await registrationPage.selectProgrammingLanguages(validUser.programmingLanguages);
 
     // Submit the form
     await registrationPage.submitForm();
@@ -58,13 +62,16 @@ describe('Registration Form Tests', () => {
     // Navigate to the registration form page
     await registrationPage.navigateTo();
 
+    // Get invalid user data from fixture
+    const invalidUser = userData.invalidUser;
+
     // Fill form with invalid data
-    await registrationPage.enterFirstName('Jane');
-    await registrationPage.enterLastName('Smith');
-    await registrationPage.enterUsername('jane'); // Too short username
-    await registrationPage.enterEmail('invalid-email'); // Invalid email
-    await registrationPage.enterPassword('pass'); // Too short password
-    await registrationPage.enterPhone('123-456'); // Invalid phone format
+    await registrationPage.enterFirstName(invalidUser.firstName);
+    await registrationPage.enterLastName(invalidUser.lastName);
+    await registrationPage.enterUsername(invalidUser.username);
+    await registrationPage.enterEmail(invalidUser.email);
+    await registrationPage.enterPassword(invalidUser.password);
+    await registrationPage.enterPhone(invalidUser.phone);
 
     // Verify validation errors are displayed
     expect(await registrationPage.isUsernameErrorDisplayed()).toBe(true);
@@ -82,23 +89,11 @@ describe('Registration Form Tests', () => {
     // Navigate to the registration form page
     await registrationPage.navigateTo();
 
-    // Create user data object
-    const userData = {
-      firstName: 'Alice',
-      lastName: 'Johnson',
-      username: 'alicej2023',
-      email: 'alice.j@example.com',
-      password: 'SecurePwd123',
-      phone: '571-987-6543',
-      gender: 'female',
-      birthday: '05/20/1995',
-      department: 'DE',
-      jobTitle: 'SDET',
-      programmingLanguages: ['java', 'javascript', 'c++']
-    };
+    // Get valid user data from fixture
+    const validUser = userData.validUser;
 
     // Fill the entire form with one method call
-    await registrationPage.fillEntireForm(userData);
+    await registrationPage.fillEntireForm(validUser);
 
     // Submit the form
     await registrationPage.submitForm();
