@@ -37,11 +37,6 @@ describe('Registration Form Tests', () => {
   });
 
   it('should successfully submit the registration form with valid data', async () => {
-    // Skip tests if driver couldn't be created (especially in CI)
-    if (!driver) {
-      console.warn(`Skipping tests for ${browser} as WebDriver couldn't be created`);
-      return;
-    }
     // Navigate to the registration form page
     await registrationPage.navigateTo();
 
@@ -70,11 +65,6 @@ describe('Registration Form Tests', () => {
   });
 
   it('should display validation errors for invalid form submission', async () => {
-    // Skip tests if driver couldn't be created (especially in CI)
-    if (!driver) {
-      console.warn(`Skipping tests for ${browser} as WebDriver couldn't be created`);
-      return;
-    }
     // Navigate to the registration form page
     await registrationPage.navigateTo();
 
@@ -102,11 +92,6 @@ describe('Registration Form Tests', () => {
 
   // Optional test to demonstrate the fillEntireForm utility method
   it('should submit form successfully using fillEntireForm method', async () => {
-    // Skip tests if driver couldn't be created (especially in CI)
-    if (!driver) {
-      console.warn(`Skipping tests for ${browser} as WebDriver couldn't be created`);
-      return;
-    }
     // Navigate to the registration form page
     await registrationPage.navigateTo();
 
