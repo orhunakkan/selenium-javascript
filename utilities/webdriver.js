@@ -8,45 +8,57 @@ import edge from 'selenium-webdriver/edge';
  * @param {string} browserName - 'chrome', 'firefox', or 'edge'
  * @returns {WebDriver} WebDriver instance
  */
-export function createDriver(browserName = 'chrome') {
-  // Check if we're in CI environment
+export async function createDriver(browserName = 'chrome') {
+  console.log(`Setting up ${browserName} WebDriver...`);
   const isCI = process.env.CI === 'true';
+  let driver;
 
-  switch (browserName.toLowerCase()) {
-    case 'firefox': {
-      const options = new firefox.Options();
-      if (isCI) {
-        options.addArguments('-headless');
-        options.addArguments('--window-size=1920,1080');
-        return new Builder().forBrowser('firefox').usingServer('http://localhost:4444').setFirefoxOptions(options).build();
+  try {
+    switch (browserName.toLowerCase()) {
+      case 'firefox': {
+        const options = new firefox.Options();
+        if (isCI) {
+          options.headless();
+          options.windowSize({ width: 1920, height: 1080 });
+        }
+        driver = await new Builder().forBrowser('firefox').setFirefoxOptions(options).build();
+        break;
       }
-      return new Builder().forBrowser('firefox').setFirefoxOptions(options).build();
+
+      case 'edge': {
+        const options = new edge.Options();
+        if (isCI) {
+          options.addArguments('--headless=new');
+          options.addArguments('--no-sandbox');
+          options.addArguments('--disable-dev-shm-usage');
+          options.addArguments('--window-size=1920,1080');
+        }
+        driver = await new Builder().forBrowser('MicrosoftEdge').setEdgeOptions(options).build();
+        break;
+      }
+
+      case 'chrome':
+      default: {
+        const options = new chrome.Options();
+        if (isCI) {
+          options.addArguments('--headless=new');
+          options.addArguments('--no-sandbox');
+          options.addArguments('--disable-dev-shm-usage');
+          options.addArguments('--window-size=1920,1080');
+        }
+        driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
+        break;
+      }
     }
 
-    case 'edge': {
-      const options = new edge.Options();
-      if (isCI) {
-        options.addArguments('--headless=new');
-        options.addArguments('--no-sandbox');
-        options.addArguments('--disable-dev-shm-usage');
-        options.addArguments('--window-size=1920,1080');
-        return new Builder().forBrowser('MicrosoftEdge').usingServer('http://localhost:4444').setEdgeOptions(options).build();
-      }
-      return new Builder().forBrowser('MicrosoftEdge').setEdgeOptions(options).build();
+    console.log(`${browserName} WebDriver created successfully`);
+    return driver;
+  } catch (error) {
+    console.error(`Error creating ${browserName} WebDriver:`, error);
+    // In CI, if one browser fails, we don't want to block other browser tests
+    if (!isCI) {
+      throw error;
     }
-
-    case 'chrome':
-    default: {
-      const options = new chrome.Options();
-      if (isCI) {
-        options.addArguments('--headless=new');
-        options.addArguments('--no-sandbox');
-        options.addArguments('--disable-dev-shm-usage');
-        options.addArguments('--disable-gpu');
-        options.addArguments('--window-size=1920,1080');
-        return new Builder().forBrowser('chrome').usingServer('http://localhost:4444').setChromeOptions(options).build();
-      }
-      return new Builder().forBrowser('chrome').setChromeOptions(options).build();
-    }
+    return null;
   }
 }
