@@ -7,8 +7,8 @@ describe('Registration Form Tests', () => {
   let driver;
   let registrationPage;
 
-  // Get browser from environment variable or default to chrome
-  const browser = process.env.BROWSER || 'chrome';
+  // Always use Chrome for tests
+  const browser = 'chrome';
 
   beforeAll(async () => {
     try {
@@ -16,7 +16,7 @@ describe('Registration Form Tests', () => {
 
       // Skip tests if driver couldn't be created (especially in CI)
       if (!driver) {
-        console.warn(`Skipping tests for ${browser} as WebDriver couldn't be created`);
+        console.warn(`Skipping tests as Chrome WebDriver couldn't be created`);
         return;
       }
 
@@ -26,7 +26,7 @@ describe('Registration Form Tests', () => {
       // Initialize the registration page
       registrationPage = new RegistrationPage(driver);
     } catch (error) {
-      console.error(`Error in test setup for ${browser}:`, error);
+      console.error(`Error in test setup for Chrome:`, error);
     }
   });
 

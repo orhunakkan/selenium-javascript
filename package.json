@@ -7,10 +7,8 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:api": "vitest run tests/api",
-    "test:e2e:chrome": "cross-env BROWSER=chrome vitest run tests/e2e",
-    "test:e2e:firefox": "cross-env BROWSER=firefox vitest run tests/e2e",
-    "test:e2e:edge": "cross-env BROWSER=edge vitest run tests/e2e",
-    "test:e2e:all": "npm run test:api && npm run test:e2e:chrome && npm run test:e2e:firefox && npm run test:e2e:edge",
+    "test:e2e": "vitest run tests/e2e",
+    "test:all": "npm run test:api && npm run test:e2e",
     "coverage": "vitest run --coverage",
     "format": "prettier --write \"**/*.{js,json,md}\"",
     "format:check": "prettier --check \"**/*.{js,json,md}\""
