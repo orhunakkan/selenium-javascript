@@ -7,16 +7,19 @@ describe('Registration Form Tests', () => {
   let driver;
   let registrationPage;
 
+  // Get browser from environment variable or default to chrome
+  const browser = process.env.BROWSER || 'chrome';
+
   beforeAll(async () => {
     try {
-      driver = await createDriver();
+      driver = await createDriver(browser);
       await driver.manage().window().maximize();
       await driver.manage().setTimeouts({ implicit: 10000 });
 
       // Initialize the registration page
       registrationPage = new RegistrationPage(driver);
     } catch (error) {
-      console.error('Error creating WebDriver:', error);
+      console.error(`Error creating ${browser} WebDriver:`, error);
     }
   });
 

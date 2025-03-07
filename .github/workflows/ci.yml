@@ -27,23 +27,45 @@ jobs:
       uses: browser-actions/setup-chrome@v1
       with:
         chrome-version: stable
+        
+    - name: Setup Firefox for Selenium tests
+      uses: browser-actions/setup-firefox@v1
+      with:
+        firefox-version: latest
+        
+    - name: Setup Microsoft Edge for Selenium tests
+      uses: browser-actions/setup-edge@v1
+      with:
+        edge-version: stable
     
-    - name: Install and start ChromeDriver
+    - name: Install and start WebDrivers
       run: |
+        # Chrome setup
         CHROME_VERSION=$(google-chrome --version | cut -d " " -f3 | cut -d "." -f1)
         echo "Chrome version: $CHROME_VERSION"
         npm install -g chromedriver@$CHROME_VERSION
         chromedriver --version
         nohup chromedriver --port=4444 --whitelisted-ips="" &
         echo "ChromeDriver started"
-        # Wait for ChromeDriver to start
-        sleep 5
         
-    - name: Run API tests
-      run: npm run test:run -- tests/api
+        # Firefox setup
+        npm install -g geckodriver
+        geckodriver --version
+        nohup geckodriver &
+        echo "GeckoDriver started"
+        
+        # Edge setup
+        EDGE_VERSION=$(microsoft-edge --version | cut -d " " -f3 | cut -d "." -f1)
+        echo "Edge version: $EDGE_VERSION" 
+        npm install -g edgedriver
+        nohup msedgedriver &
+        echo "EdgeDriver started"
+        
+        # Wait for drivers to start
+        sleep 5
       
-    - name: Run E2E tests
-      run: npm run test:run -- tests/e2e
+    - name: Run all tests
+      run: npm run test:e2e:all
       env:
         CI: true
       
