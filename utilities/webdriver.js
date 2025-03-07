@@ -18,7 +18,8 @@ export async function createDriver(browserName = 'chrome') {
       case 'firefox': {
         const options = new firefox.Options();
         if (isCI) {
-          options.headless();
+          // Replace the deprecated headless() method with the new approach
+          options.addArguments('-headless');
           options.windowSize({ width: 1920, height: 1080 });
         }
         driver = await new Builder().forBrowser('firefox').setFirefoxOptions(options).build();
