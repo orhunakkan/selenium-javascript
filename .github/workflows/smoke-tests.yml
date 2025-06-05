@@ -26,7 +26,7 @@ jobs:
         sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
         sudo apt-get update
         sudo apt-get install -y microsoft-edge-stable
-      - name: Install Microsoft Edge WebDriver
+    - name: Install Microsoft Edge WebDriver
       run: |
         EDGE_VERSION=$(microsoft-edge --version | tr -d '\0' | awk '{print $3}')
         MAJOR_VERSION=$(echo $EDGE_VERSION | cut -d'.' -f1)
