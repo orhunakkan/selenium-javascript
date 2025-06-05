@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "test:smoke": "TEST_TAG=@smoke mocha"
   },
   "author": "Orhun Akkan",
   "license": "ISC",

@@ -1,7 +1,7 @@
 import { Builder, By } from "selenium-webdriver";
 import { expect } from "chai";
 
-describe("Heroku App - Smoke Suite", () => {
+describe("Heroku App - Smoke Suite @smoke", () => {
 
   it("should load the homepage and validate title and basic elements", async () => {
     const driver = await new Builder().forBrowser('MicrosoftEdge').build();
