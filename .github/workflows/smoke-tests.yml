@@ -26,12 +26,14 @@ jobs:
         sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
         sudo apt-get update
         sudo apt-get install -y microsoft-edge-stable
-    
-    - name: Install Microsoft Edge WebDriver
+      - name: Install Microsoft Edge WebDriver
       run: |
-        EDGE_VERSION=$(microsoft-edge --version | awk '{print $3}')
-        DRIVER_VERSION=$(curl -s "https://msedgedriver.azureedge.net/LATEST_RELEASE_${EDGE_VERSION%%.*}")
-        curl -Lo msedgedriver.zip "https://msedgedriver.azureedge.net/${DRIVER_VERSION}/edgedriver_linux64.zip"
+        EDGE_VERSION=$(microsoft-edge --version | tr -d '\0' | awk '{print $3}')
+        MAJOR_VERSION=$(echo $EDGE_VERSION | cut -d'.' -f1)
+        echo "Edge version: $EDGE_VERSION, Major version: $MAJOR_VERSION"
+        DRIVER_VERSION=$(curl -s "https://msedgedriver.azureedge.net/LATEST_RELEASE_$MAJOR_VERSION")
+        echo "Using WebDriver version: $DRIVER_VERSION"
+        curl -Lo msedgedriver.zip "https://msedgedriver.azureedge.net/$DRIVER_VERSION/edgedriver_linux64.zip"
         unzip msedgedriver.zip
         chmod +x msedgedriver
         sudo mv msedgedriver /usr/local/bin/
