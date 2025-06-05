@@ -72,7 +72,7 @@ describe("Heroku App - Smoke Suite", () => {
     }
   });
 
-    it("should -------------------------------- @smoke", async () => {
+    it("should --------------------------------", async () => {
     const driver = await createDriver();
     
     try {
