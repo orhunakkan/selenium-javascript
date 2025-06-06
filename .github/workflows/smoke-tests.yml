@@ -1,4 +1,4 @@
-name: Daily Smoke Tests
+name: Smoke Tests
 
 on:
   schedule:
