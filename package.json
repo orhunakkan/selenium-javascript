@@ -2,10 +2,7 @@
   "name": "selenium-javascript",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "test": "mocha",
-    "test:smoke": "TEST_TAG=@smoke mocha"
-  },
+  "scripts": {},
   "author": "Orhun Akkan",
   "license": "ISC",
   "description": "Selenium-Javascript Framework",

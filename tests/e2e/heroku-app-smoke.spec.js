@@ -2,7 +2,7 @@ import { By } from "selenium-webdriver";
 import { expect } from "chai";
 import { createDriver } from "../../utilities/browser.js";
 
-describe("Heroku App - Smoke Suite @smoke", () => {
+describe("Heroku App - Smoke Suite", () => {
 
   let driver;
 

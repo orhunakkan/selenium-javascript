@@ -42,6 +42,4 @@ jobs:
       run: npm ci
       
     - name: Run smoke tests
-      run: npm run test:smoke
-      env:
-        CI: 'true'
+      run: npx mocha tests/e2e/heroku-app-smoke.spec.js
