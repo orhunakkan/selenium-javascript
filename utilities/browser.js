@@ -19,5 +19,9 @@ export async function createDriver() {
     .forBrowser('MicrosoftEdge')
     .setEdgeOptions(options)
     .withCapabilities(capabilities)
-    .build();
+    .build()
+    .then(driver => {
+      driver.manage().setTimeouts({ implicit: 30000 });
+      return driver;
+    });
 }
