@@ -23,6 +23,10 @@ export function generatePetPayload() {
     };
 }
 
+/**
+ * Returns the headers for the API requests
+ * @returns {Object} Headers object with Content-Type set to application/json
+ */
 export function getHeaders() {
     return {
         headers: {
