@@ -1,20 +1,22 @@
-import { By } from "selenium-webdriver";
 import { expect } from "chai";
 import { createDriver } from "../../utilities/browser.js";
+import HerokuHomePage from "../../pages/HerokuHomePage.js";
 
 describe("Heroku App - Smoke Suite", () => {
 
   let driver;
+  let homePage;
 
   beforeEach(async () => {
     driver = await createDriver();
+    homePage = new HerokuHomePage(driver);
+    await homePage.navigateToHomePage();
   });
 
   it("should load the homepage and validate title and basic elements", async () => {
-    await driver.get("https://the-internet.herokuapp.com/");
-    expect(await driver.getTitle()).to.equal("The Internet");
-    expect(await driver.findElement(By.css("h1")).getText()).to.equal("Welcome to the-internet");
-    expect(await driver.findElement(By.css("h2")).getText()).to.equal("Available Examples");
+    expect(await homePage.getTitle()).to.equal("The Internet");
+    expect(await homePage.getHeaderTitle()).to.equal("Welcome to the-internet");
+    expect(await homePage.getSubHeaderTitle()).to.equal("Available Examples");
   });
 
   afterEach(async () => {
