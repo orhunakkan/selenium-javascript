@@ -24,6 +24,7 @@ describe('Pet Store API - Full CRUD Flow (Split Tests with Retry)', () => {
     });
 
     it('should retrieve the created pet', async () => {
+
         let retries = 5;
         let response;
 
@@ -51,6 +52,7 @@ describe('Pet Store API - Full CRUD Flow (Split Tests with Retry)', () => {
     });
 
     it('should update the pet', async () => {
+
         pet.name = 'UpdatedPetName';
         pet.status = 'sold';
 
@@ -61,6 +63,7 @@ describe('Pet Store API - Full CRUD Flow (Split Tests with Retry)', () => {
     });
 
     it('should retrieve the updated pet', async () => {
+
         let retries = 5;
         let response;
 
@@ -70,7 +73,6 @@ describe('Pet Store API - Full CRUD Flow (Split Tests with Retry)', () => {
                 if (response.data.name === 'UpdatedPetName' && response.data.status === 'sold') {
                     break;
                 }
-                // If data not yet updated, retry
                 retries--;
                 if (retries === 0) throw new Error('Updated data not found after retries');
                 await new Promise(resolve => setTimeout(resolve, 500));
@@ -92,16 +94,15 @@ describe('Pet Store API - Full CRUD Flow (Split Tests with Retry)', () => {
     });
 
     it('should return 404 when retrieving deleted pet', async () => {
+
         let retries = 5;
 
         while (retries > 0) {
             try {
                 await axios.get(`${BASE_URL}/pet/${pet.id}`);
-                // If request succeeds, fail the test because it shouldn't
                 expect.fail('Expected 404 but got success');
             } catch (error) {
                 if (error.response && error.response.status === 404) {
-                    // Correct response received
                     return;
                 }
                 retries--;
