@@ -1,6 +1,5 @@
 import { Builder } from "selenium-webdriver";
 import edge from "selenium-webdriver/edge.js";
-import { baseUrl } from "./environments.js";
 
 /**
  * Creates and returns a Selenium WebDriver instance for Microsoft Edge.
