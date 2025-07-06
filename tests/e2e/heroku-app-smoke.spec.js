@@ -1,5 +1,6 @@
 import { createDriver } from "../../utilities/driver.js";
 import { HerokuAppHomePage } from "../../pages/heroku-app-home-page.js";
+import { baseUrl } from "../../utilities/environments.js";
 import { expect } from "chai";
 
 describe("Heroku App - Smoke Suite", () => {
@@ -10,7 +11,7 @@ describe("Heroku App - Smoke Suite", () => {
     beforeEach(async () => {
         driver = await createDriver();
         homePage = new HerokuAppHomePage(driver);
-        await driver.get('/');
+        await driver.get(baseUrl);
     });
 
     afterEach(async () => {

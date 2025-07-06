@@ -14,6 +14,7 @@ export async function createDriver() {
     options.addArguments("--no-sandbox");
     options.addArguments("--disable-dev-shm-usage");
     options.addArguments("--window-size=1920,1080");
+    options.addArguments("--disable-gpu");
 
     const driver = await new Builder()
         .forBrowser("MicrosoftEdge")
@@ -21,15 +22,6 @@ export async function createDriver() {
         .build();
 
     await driver.manage().setTimeouts({ implicit: 30000 });
-
-    const originalGet = driver.get.bind(driver);
-
-    driver.get = function (url) {
-        if (url.startsWith('/')) {
-            url = baseUrl + url.substring(1);
-        }
-        return originalGet(url);
-    };
 
     return driver;
 }
