@@ -1,4 +1,4 @@
-import { By } from "selenium-webdriver";
+import { By, until } from "selenium-webdriver";
 
 export class HerokuAppHomePage {
 
@@ -13,6 +13,8 @@ export class HerokuAppHomePage {
     }
 
     async getPageTitle() {
+        const wait = this.driver.wait.bind(this.driver);
+        await wait(until.titleMatches(/.+/), 10000);
         return await this.driver.getTitle();
     }
 

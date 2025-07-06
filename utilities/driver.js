@@ -5,7 +5,6 @@ import { baseUrl } from "./environments.js";
 /**
  * Creates and returns a Selenium WebDriver instance for Microsoft Edge.
  * The browser will run in headless mode with a 30-second implicit wait for element finding operations.
- * @returns {Promise<import("selenium-webdriver").WebDriver>} A promise that resolves to a WebDriver instance.
  */
 export async function createDriver() {
 
@@ -20,17 +19,17 @@ export async function createDriver() {
         .forBrowser("MicrosoftEdge")
         .setEdgeOptions(options)
         .build();
-        
+
     await driver.manage().setTimeouts({ implicit: 30000 });
 
     const originalGet = driver.get.bind(driver);
-    
-    driver.get = function(url) {
+
+    driver.get = function (url) {
         if (url.startsWith('/')) {
             url = baseUrl + url.substring(1);
         }
         return originalGet(url);
     };
-        
+
     return driver;
 }
