@@ -11,7 +11,7 @@ describe("Heroku App - Smoke Suite", () => {
     beforeEach(async () => {
         driver = await createDriver();
         homePage = new HerokuAppHomePage(driver);
-        await driver.get(baseUrl);
+        await driver.get('/');
     });
 
     afterEach(async () => {

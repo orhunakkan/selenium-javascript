@@ -1,5 +1,6 @@
 import { Builder } from "selenium-webdriver";
 import edge from "selenium-webdriver/edge.js";
+import { baseUrl } from "./environments.js";
 
 /**
  * Creates and returns a Selenium WebDriver instance for Microsoft Edge.
@@ -21,6 +22,15 @@ export async function createDriver() {
         .build();
         
     await driver.manage().setTimeouts({ implicit: 30000 });
+
+    const originalGet = driver.get.bind(driver);
+    
+    driver.get = function(url) {
+        if (url.startsWith('/')) {
+            url = baseUrl + url.substring(1);
+        }
+        return originalGet(url);
+    };
         
     return driver;
 }
