@@ -1,6 +1,7 @@
 import { createDriver } from "../../utilities/driver.js";
 import { HerokuAppHomePage } from "../../pages/heroku-app-home-page.js";
 import { expect } from "chai";
+import { By } from "selenium-webdriver";
 
 describe("Heroku App - Smoke Suite", () => {
 

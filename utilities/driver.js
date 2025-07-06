@@ -3,7 +3,7 @@ import edge from "selenium-webdriver/edge.js";
 
 /**
  * Creates and returns a Selenium WebDriver instance for Microsoft Edge.
- * The browser will run in headless mode.
+ * The browser will run in headless mode with a 30-second implicit wait for element finding operations.
  * @returns {Promise<import("selenium-webdriver").WebDriver>} A promise that resolves to a WebDriver instance.
  */
 export async function createDriver() {
@@ -19,6 +19,8 @@ export async function createDriver() {
         .forBrowser("MicrosoftEdge")
         .setEdgeOptions(options)
         .build();
+        
+    await driver.manage().setTimeouts({ implicit: 30000 });
         
     return driver;
 }
