@@ -10,6 +10,7 @@ describe("Heroku App - Smoke Suite", () => {
     beforeEach(async () => {
         driver = await createDriver();
         homePage = new HerokuAppHomePage(driver);
+        await driver.get("https://the-internet.herokuapp.com/");
     });
 
     afterEach(async () => {
@@ -19,7 +20,6 @@ describe("Heroku App - Smoke Suite", () => {
     });
 
     it("should load the homepage and validate title and basic elements", async () => {
-        await homePage.navigate();
         expect(await homePage.getPageTitle()).to.equal("The Internet");
         expect(await homePage.getMainHeading()).to.equal("Welcome to the-internet");
         expect(await homePage.getSubtitle()).to.equal("Available Examples");
