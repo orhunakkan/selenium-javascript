@@ -29,7 +29,7 @@ describe("Heroku App - Smoke Suite", () => {
 
     it("should load the homepage and validate title and basic elements", async () => {
         expect(await homePage.getPageTitle()).to.equal("The Internet");
-        expect(await homePage.getMainHeading()).to.equal("Wee to the-internet");
+        expect(await homePage.getMainHeading()).to.equal("Welcome to the-internet");
         expect(await homePage.getSubtitle()).to.equal("Available Examples");
     });
 });
