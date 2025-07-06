@@ -12,6 +12,9 @@ export class ScreenshotUtility {
      */
     static async captureScreenshot(driver, testName, status = 'failed') {
         const screenshotsDir = 'screenshots';
+        if (!fs.existsSync(screenshotsDir)) {
+            fs.mkdirSync(screenshotsDir, { recursive: true });
+        }
         const cleanTestName = testName.replace(/[^a-zA-Z0-9]/g, '_');
         const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
         const filename = `Screenshot_${cleanTestName}_${status}_${timestamp}.png`;
