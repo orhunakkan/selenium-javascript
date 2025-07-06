@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   reporter: "mochawesome",
   reporterOptions: {
     reportDir: "mochawesome-report",
