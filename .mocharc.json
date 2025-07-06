@@ -1,8 +1,6 @@
 {
   "reporter": "mochawesome",
   "reporterOptions": {
-    "reportDir": "reports",
-    "reportFilename": "test-results",
     "overwrite": true,
     "html": true,
     "json": true
