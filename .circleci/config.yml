@@ -1,0 +1,68 @@
+version: 2.1
+
+jobs:
+  smoke-tests:
+    docker:
+      - image: cimg/node:22.0
+    steps:
+      - checkout
+      
+      - restore_cache:
+          keys:
+            - npm-cache-v1-{{ checksum "package-lock.json" }}
+            - npm-cache-v1-
+      
+      - run:
+          name: Install Microsoft Edge
+          command: |
+            curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+            sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+            sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+            sudo apt-get update
+            sudo apt-get install -y microsoft-edge-stable
+            
+      - run:
+          name: Install Microsoft Edge WebDriver
+          command: |
+            EDGE_VERSION=$(microsoft-edge --version | tr -d '\\0' | awk '{print $3}')
+            MAJOR_VERSION=$(echo $EDGE_VERSION | cut -d'.' -f1)
+            echo "Edge version: $EDGE_VERSION, Major version: $MAJOR_VERSION"
+            DRIVER_VERSION=$(curl -s "https://msedgedriver.azureedge.net/LATEST_RELEASE_$MAJOR_VERSION" | tr -dc '[:print:]')
+            echo "Using WebDriver version: $DRIVER_VERSION"
+            curl -Lo msedgedriver.zip "https://msedgedriver.azureedge.net/$DRIVER_VERSION/edgedriver_linux64.zip"
+            unzip msedgedriver.zip
+            chmod +x msedgedriver
+            sudo mv msedgedriver /usr/local/bin/
+            
+      - run:
+          name: Install dependencies
+          command: npm ci
+          
+      - save_cache:
+          key: npm-cache-v1-{{ checksum "package-lock.json" }}
+          paths:
+            - ~/.npm
+            
+      - run:
+          name: Run smoke tests
+          command: npx mocha tests/e2e/heroku-app-smoke.spec.js
+          
+      - store_artifacts:
+          path: mochawesome-report/
+          destination: test-reports
+          
+workflows:
+  version: 2
+  smoke-tests:
+    jobs:
+      - smoke-tests
+  scheduled-smoke-tests:
+    triggers:
+      - schedule:
+          cron: "0 3 * * *"
+          filters:
+            branches:
+              only:
+                - main
+    jobs:
+      - smoke-tests
