@@ -6,12 +6,12 @@ jobs:
       - image: cimg/node:22.0
     steps:
       - checkout
-      
+
       - restore_cache:
           keys:
             - npm-cache-v1-{{ checksum "package-lock.json" }}
             - npm-cache-v1-
-      
+
       - run:
           name: Install Microsoft Edge
           command: |
@@ -20,7 +20,7 @@ jobs:
             sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
             sudo apt-get update
             sudo apt-get install -y microsoft-edge-stable
-            
+
       - run:
           name: Install Microsoft Edge WebDriver
           command: |
@@ -33,24 +33,24 @@ jobs:
             unzip msedgedriver.zip
             chmod +x msedgedriver
             sudo mv msedgedriver /usr/local/bin/
-            
+
       - run:
           name: Install dependencies
           command: npm ci
-          
+
       - save_cache:
           key: npm-cache-v1-{{ checksum "package-lock.json" }}
           paths:
             - ~/.npm
-            
+
       - run:
           name: Run smoke tests
           command: npx mocha tests/e2e/heroku-app-smoke.spec.js
-          
+
       - store_artifacts:
           path: mochawesome-report/
           destination: test-reports
-          
+
 workflows:
   version: 2
   smoke-tests:
@@ -59,7 +59,7 @@ workflows:
   scheduled-smoke-tests:
     triggers:
       - schedule:
-          cron: "0 3 * * *"
+          cron: '0 3 * * *'
           filters:
             branches:
               only:
