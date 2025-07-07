@@ -2,7 +2,9 @@
   "name": "selenium-javascript",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {},
+  "scripts": {
+    "test:ci": "mocha --retries 1 --parallel --jobs 4"
+  },
   "author": "Orhun Akkan",
   "license": "ISC",
   "description": "Selenium-Javascript Framework",
