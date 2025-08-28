@@ -2,13 +2,7 @@
   "name": "selenium-javascript",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "test:ci": "mocha --retries 1 --parallel --jobs 4",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
-  },
+  "scripts": {},
   "author": "Orhun Akkan",
   "license": "ISC",
   "description": "Selenium-Javascript Framework",
