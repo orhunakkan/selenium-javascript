@@ -8,11 +8,12 @@
   "type": "module",
   "scripts": {},
   "dependencies": {
-    "dotenv": "^17.2.1",
     "axios": "^1.11.0",
+    "dotenv": "^17.2.1",
     "selenium-webdriver": "4.35.0"
   },
   "devDependencies": {
+    "@types/selenium-webdriver": "^4.1.28",
     "@faker-js/faker": "^10.0.0",
     "chai": "^6.0.1",
     "mocha": "^11.7.1",
