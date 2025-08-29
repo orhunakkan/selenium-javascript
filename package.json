@@ -8,6 +8,7 @@
   "type": "module",
   "scripts": {},
   "dependencies": {
+    "dotenv": "^17.2.1",
     "axios": "^1.11.0",
     "selenium-webdriver": "4.35.0"
   },
