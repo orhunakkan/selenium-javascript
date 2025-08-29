@@ -1,11 +1,12 @@
 {
   "name": "selenium-javascript",
   "version": "1.0.0",
+  "description": "Selenium-Javascript Framework",
+  "license": "ISC",
+  "author": "Orhun Akkan",
+  "main": "index.js",
   "type": "module",
   "scripts": {},
-  "author": "Orhun Akkan",
-  "license": "ISC",
-  "description": "Selenium-Javascript Framework",
   "dependencies": {
     "axios": "^1.11.0",
     "selenium-webdriver": "4.35.0"
