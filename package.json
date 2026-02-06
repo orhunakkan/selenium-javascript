@@ -1,0 +1,31 @@
+{
+  "name": "selenium-javascript",
+  "version": "1.0.0",
+  "description": "Selenium-Javascript Framework",
+  "license": "ISC",
+  "author": "Orhun Akkan",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha --config .mocharc.json",
+    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|mdx|graphql|vue)\"",
+    "format:check": "prettier --check \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|mdx|graphql|vue)\"",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "axios": "^1.13.4",
+    "dotenv": "^17.2.3",
+    "selenium-webdriver": "4.40.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@faker-js/faker": "^10.2.0",
+    "chai": "^6.2.2",
+    "eslint": "^9.39.2",
+    "eslint-plugin-mocha": "^11.2.0",
+    "mocha": "^11.7.5",
+    "mochawesome": "^7.1.4",
+    "prettier": "^3.8.1"
+  }
+}

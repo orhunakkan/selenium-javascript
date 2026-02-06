@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ES2020",
+    "moduleResolution": "node"
+  },
+  "include": ["pages/**/*.js", "tests/**/*.js", "utilities/**/*.js"],
+  "exclude": ["node_modules", "reports"]
+}

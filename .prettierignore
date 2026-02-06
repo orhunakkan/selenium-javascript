@@ -1,0 +1,13 @@
+node_modules
+dist
+build
+coverage
+reports
+screenshots
+videos
+.git
+.gitignore
+.github
+package-lock.json
+*.html
+*.json

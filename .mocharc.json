@@ -1,0 +1,14 @@
+{
+  "spec": "tests/**/*.spec.js",
+  "require": "dotenv/config",
+  "timeout": 60000,
+  "reporter": "mochawesome",
+  "reporter-options": [
+    "reportDir=reports",
+    "reportFilename=test-report",
+    "html=true",
+    "json=true",
+    "overwrite=false",
+    "timestamp=true"
+  ]
+}
