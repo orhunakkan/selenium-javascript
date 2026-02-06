@@ -21,11 +21,11 @@ jobs:
           node-version: "24"
 
       - name: Install dependencies
-        working-directory: ./selenium-javascript
+        working-directory: .
         run: npm install
 
       - name: Run Selenium tests
-        working-directory: ./selenium-javascript
+        working-directory: .
         run: HEADLESS=true npx mocha tests/e2e
 
       - name: Upload Selenium Report
@@ -33,5 +33,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: selenium-report
-          path: selenium-javascript/reports/
+          path: reports/
           retention-days: 30
