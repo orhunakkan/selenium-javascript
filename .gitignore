@@ -1,15 +1,11 @@
 # Dependencies
 node_modules/
-package-lock.json
 
 # Test Reports
 mochawesome-report/
 reports/
 screenshots/
 videos/
-
-# Environment Variables
-.env
 
 # IDE
 .idea/

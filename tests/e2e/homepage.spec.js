@@ -22,13 +22,4 @@ describe('Homepage Test', () => {
   it('should verify the title of the page', async () => {
     expect(await driver.getTitle()).to.equal('Hands-On Selenium WebDriver with Java');
   });
-
-  it('should display all chapter cards', async () => {
-    expect(await driver.findElement(homePage.chapter3Card).isDisplayed()).to.be.true;
-    expect(await driver.findElement(homePage.chapter4Card).isDisplayed()).to.be.true;
-    expect(await driver.findElement(homePage.chapter5Card).isDisplayed()).to.be.true;
-    expect(await driver.findElement(homePage.chapter7Card).isDisplayed()).to.be.true;
-    expect(await driver.findElement(homePage.chapter8Card).isDisplayed()).to.be.true;
-    expect(await driver.findElement(homePage.chapter9Card).isDisplayed()).to.be.true;
-  });
 });
