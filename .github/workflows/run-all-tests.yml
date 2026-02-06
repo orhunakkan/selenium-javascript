@@ -9,7 +9,7 @@ on:
 
 jobs:
   all-tests:
-    name: Run All Selenium Tests
+    name: Run All Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -21,11 +21,9 @@ jobs:
           node-version: "24"
 
       - name: Install dependencies
-        working-directory: .
         run: npm install
 
       - name: Run Selenium tests
-        working-directory: .
         run: HEADLESS=true npm run test
 
       - name: Upload Selenium Report
